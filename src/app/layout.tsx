@@ -1,18 +1,9 @@
 "use client"
 
-import { Provider } from "react-redux"
-import Header from "../components/layout/Header"
 import ClientProvider from "./components/ClientProvider"
 import './globals.css'
 import { Providers } from "./GlobalRedux/provider"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { Root } from "postcss"
-import { channel } from "diagnostics_channel"
-import { Children } from "react"
-
-export const metadata = {
-	title: 'KNote',
-}
 
 const queryClient = new QueryClient()
 
