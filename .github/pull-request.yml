@@ -8,7 +8,7 @@ on:
 jobs:
   builD:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latestx
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 18.16.0
