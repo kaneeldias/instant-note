@@ -1,10 +1,8 @@
-import { CreateNoteRequest, UpdateNoteRequest } from "@/app/types/note-types";
-import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from "../../../../firebase-admin";
+import { CreateNoteRequest, GetNotesResponseElement } from "@/app/types/note-types";
 import { getSLTimestamp } from "@/app/utils/time";
 import admin from "firebase-admin";
-import { GetNotesRequest } from "@/app/types/note-types";
-import { GetNotesResponseElement } from "@/app/types/note-types";
+import { NextRequest, NextResponse } from 'next/server';
+import { adminDb } from "../../../../firebase-admin";
 const httpConstants = require('http2').constants;
 
 export async function POST(request: NextRequest) {

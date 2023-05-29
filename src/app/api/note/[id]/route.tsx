@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { adminDb } from "../../../../../firebase-admin";
 import { ReadNoteRequest, ReadNoteResponse, UpdateNoteRequest } from "@/app/types/note-types";
 import { getSLTimestamp } from "@/app/utils/time";
+import { NextRequest, NextResponse } from "next/server";
+import { adminDb } from "../../../../../firebase-admin";
 const httpConstants = require('http2').constants;
 
 export async function GET(request: NextRequest, { params }: { params: ReadNoteRequest }) {

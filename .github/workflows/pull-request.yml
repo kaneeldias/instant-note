@@ -1,9 +1,9 @@
-name: PR build
+name: PR build2
 
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   builD:
