@@ -13,18 +13,6 @@ jobs:
     - name: "Get latest code"
       uses: actions/checkout@v3
 
-    - name: "Build"
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.16.0
-    - run: npm ci
-    - run: npm run build
-      env:
-        API_PATH: ${{secrets.API_PATH}}
-        FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-        FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-        FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-
     - name: "Sync files"
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
