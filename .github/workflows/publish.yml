@@ -16,8 +16,18 @@ jobs:
     - name: "Sync files"
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-          username: ${{ secrets.SFTP_USERNAME }}
-          server: ${{ secrets.SFTP_SERVER }}
-          ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }} 
-          local_path: './*'
-          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        server: ${{ secrets.SFTP_SERVER }}
+        ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }}
+        local_path: './*'
+        remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
+
+    - name: "Deploy project"
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.SFTP_SERVER }}
+        port: 22
+        username: ${{ secrets.SFTP_USERNAME }}
+        key: ${{ secrets.SFTP_PRIVATE_KEY }}
+        script: npm ci && npm run build
+
