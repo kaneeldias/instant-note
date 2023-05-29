@@ -1,0 +1,36 @@
+name: Publish
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Get latest code"
+      uses: actions/checkout@v3
+
+    - name: "Build"
+    - uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.0
+      - run: npm ci
+      - run: npm run build
+        env:
+          API_PATH: ${{secrets.API_PATH}}
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+
+    - name: "Sync files"
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+          username: ${{ secrets.SFTP_USERNAME }}
+          server: ${{ secrets.SFTP_SERVER }}
+          ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }} 
+          local_path: './*'
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
+
