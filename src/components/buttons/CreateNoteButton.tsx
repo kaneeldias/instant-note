@@ -7,8 +7,8 @@ function CreateNoteButton() {
 	return (
 		<Link href="/note">
 			<ActionButton>
-				<PlusIcon className="h- w-6"></PlusIcon>
-				<span>CREATE NOTE</span>
+				<PlusIcon className="h-6 w-6 "></PlusIcon>
+				<span className="hidden sm:block">CREATE NOTE</span>
 			</ActionButton>
 		</Link>
 	)

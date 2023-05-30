@@ -46,23 +46,41 @@ export default function NoteListPanel() {
 	}, [notes]);
 
 	const notesRedux = useSelector((state: RootState) => state.noteList).notesList;
+	const notesReduxTop3 = notesRedux.slice(0, 8);
 
 	const noteId = usePathname().split("/")[2];
 
 	return (
-		<div className="bg-slate-600 flex flex-col space-y-3 p-5 min-w-[250px]" >
-			<div className="mb-5">
+		<div className="bg-slate-600 flex sm:flex-col flex-row sm:space-y-3 space-x-3 sm:space-x-0 items-center sm:items-stretch sm:p-5 min-w-[250px] w-full sm:w-[120px] overflow-y-hidden">
+			<div className="sm:mb-5">
 				<CreateNoteButton></CreateNoteButton>
 			</div>
-			{
-				notesRedux.map(({ id, title }) => {
-					return (
-						<Link href={`/note/${id}`} key={id}>
-							<div className={(noteId === id ? "border-solid border-2 border-yellow-500 " : "") + "bg-slate-700 p-3 rounded-lg text-xs hover:bg-slate-400 transition-all duration-300 hover:"}>{title}</div>
-						</Link>
-					)
-				})
-			}
+			<div className="hidden sm:block flex-col sm:space-y-3">
+				{
+					notesRedux.map(({ id, title }) => {
+						return (
+							<Link href={`/note/${id}`} key={id}>
+								<div className={(noteId === id ? "border-solid border-2 border-yellow-500 " : "border-solid border-2 border-slate-200 ") + "bg-slate-700 p-3 rounded-lg text-xs hover:bg-slate-400 transition-all duration-300 whitespace-nowrap h-[48px] items-center sm:items-start justify-center align-middle mb-3"}>{title}</div>
+							</Link>
+						)
+					})
+				}
+			</div>
+
+			<div className="sm:hidden flex flex-row space-x-5 w-screen">
+				<div className="flex flex-row shrink overflow-x-scroll space-x-5 max-w-full">
+					{
+						notesReduxTop3.map(({ id, title }) => {
+							return (
+								<Link href={`/note/${id}`} key={id}>
+									<div className={(noteId === id ? "border-solid border-2 border-yellow-500 " : "border-solid border-2 border-slate-200 ") + "bg-slate-700 p-3 rounded-lg text-xs hover:bg-slate-400 transition-all duration-300 whitespace-nowrap h-[46px] items-center sm:items-start justify-center align-middle pt-3.5"}>x:{title}</div>
+								</Link>
+							)
+						})
+					}
+				</div>
+			</div>
+
 		</div>
 	)
 }

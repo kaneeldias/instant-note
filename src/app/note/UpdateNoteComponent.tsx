@@ -136,7 +136,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 
 	return (
 		<div className="flex flex-col space-y-5 w-full">
-			<div className="flex justify-end mb-3 space-x-5">
+			<div className="justify-end mb-3 space-x-5 hidden sm:inline-flex sm:w-full items-end flex flex-row ">
 				{!isSaving && (
 					<ActionButton onClick={updateNote}>
 						<CheckCircleIcon className="h-6 w-6"></CheckCircleIcon>
@@ -172,7 +172,8 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 					<AddNoteButton onClick={addNote} />
 				)}
 			</div>
-			<div className="flex flex-col w-full items-center space-y-3 bg-slate-200 p-5 rounded-lg h-full" >
+
+			<div className="flex flex-col w-full items-center space-y-3 bg-slate-200 p-5 rounded-lg h-screen" >
 				<TextField
 					name="title" placeholder="title"
 					value={title}
@@ -185,6 +186,44 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 					autoFocus>
 				</TextArea>
 			</div>
+
+			<div className="flex justify-end mb-3 space-x-5 block sm:hidden">
+				{!isSaving && (
+					<ActionButton onClick={updateNote}>
+						<CheckCircleIcon className="h-6 w-6"></CheckCircleIcon>
+						<span>SAVE</span>
+					</ActionButton>
+				)
+				}
+
+				{
+					isSaving && (
+						<ActionButton disabled>
+							<div
+								className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+								role="status">
+								<span
+									className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+								>Loading...</span>
+							</div>
+							<span>SAVING</span>
+						</ActionButton>
+					)
+				}
+
+				{!create && !loaded && (
+					<DeleteNoteButton />
+				)}
+
+				{!create && hasNote(id!) && loaded && (
+					<DeleteNoteButton onClick={deleteNote} />
+				)}
+
+				{!create && !hasNote(id!) && loaded && (
+					<AddNoteButton onClick={addNote} />
+				)}
+			</div>
+
 		</div>
 	)
 }
