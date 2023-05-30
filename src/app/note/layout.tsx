@@ -9,9 +9,9 @@ export default function NotesLayout({
 }) {
 
 	return (
-		<div className="flex sm:flex-row flex-col justify-center h-screen">
+		<div className="flex sm:flex-row flex-col justify-center h-full">
 			<NoteListPanel></NoteListPanel>
-			<div className="flex min-h-[300px] h-screen justify-center min-w-[500px] max-w-[1000px] w-full sm:mt-5 rounded-lg">
+			<div className="flex min-h-[300px] h-full justify-center max-w-[1000px] sm:mt-5 rounded-lg">
 				{children}
 			</div>
 		</div >

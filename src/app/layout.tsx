@@ -29,7 +29,7 @@ function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<Head/>
+			<Head />
 			<body>
 				<div>
 					{/* Header */}
@@ -37,8 +37,8 @@ function RootLayout({
 
 					{/* Notifications */}
 					<ClientProvider />
-					<div className="flex flex-row items-center">
-						<div className="bg-slate-600 flex-1 h-screen p-10 items-center">
+					<div className="flex flex-row items-center w-screen h-screen">
+						<div className="bg-slate-600 h-full sm:p-10 p-3 items-center w-screen">
 							<Providers>
 								{children}
 							</Providers>

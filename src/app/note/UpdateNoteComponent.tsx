@@ -136,7 +136,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 
 	return (
 		<div className="flex flex-col space-y-5 w-full">
-			<div className="justify-end mb-3 space-x-5 hidden sm:inline-flex sm:w-full items-end flex flex-row ">
+			<div className="justify-end mb-3 space-x-5 hidden sm:inline-flex sm:w-full items-end flex-row ">
 				{!isSaving && (
 					<ActionButton onClick={updateNote}>
 						<CheckCircleIcon className="h-6 w-6"></CheckCircleIcon>
@@ -173,7 +173,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 				)}
 			</div>
 
-			<div className="flex flex-col w-full items-center space-y-3 bg-slate-200 p-5 rounded-lg h-screen" >
+			<div className="flex flex-col w-full items-center space-y-3 bg-slate-200 p-5 rounded-lg h-full" >
 				<TextField
 					name="title" placeholder="title"
 					value={title}
@@ -182,8 +182,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 				<TextArea
 					name="content" placeholder="content"
 					value={content}
-					onChange={e => { setContent(e.currentTarget.value); }}
-					autoFocus>
+					onChange={e => { setContent(e.currentTarget.value); }}>
 				</TextArea>
 			</div>
 
