@@ -4,6 +4,7 @@ import ClientProvider from "./components/ClientProvider"
 import './globals.css'
 import { Providers } from "./GlobalRedux/provider"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import Head from "@/app/head";
 
 const queryClient = new QueryClient()
 
@@ -28,7 +29,7 @@ function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<head />
+			<Head/>
 			<body>
 				<div>
 					{/* Header */}
