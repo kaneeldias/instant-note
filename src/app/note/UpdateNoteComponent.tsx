@@ -186,7 +186,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 				</TextArea>
 			</div>
 
-			<div className="flex justify-end mb-3 space-x-5 block sm:hidden">
+			<div className="flex justify-end mb-3 space-x-5 sm:hidden">
 				{!isSaving && (
 					<ActionButton onClick={updateNote}>
 						<CheckCircleIcon className="h-6 w-6"></CheckCircleIcon>
