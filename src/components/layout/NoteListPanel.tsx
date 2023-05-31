@@ -48,20 +48,19 @@ export default function NoteListPanel() {
 	}, [dispatch, notes]);
 
 	const notesRedux = useSelector((state: RootState) => state.noteList).notesList;
-	const notesReduxTop3 = notesRedux.slice(0, 8);
 
-	const noteId = usePathname().split("/")[2];
+	const noteId = usePathname().split("/")[1];
 
 	return (
-		<div className="bg-slate-600 flex sm:flex-col flex-row sm:space-y-3 space-x-3 sm:space-x-0 items-center sm:items-stretch sm:pt-5 sm:pr-5 min-w-[200px] w-full sm:w-[120px] overflow-y-hidden sm:h-full">
+		<div className="bg-slate-600 flex sm:flex-col flex-row sm:space-y-3 space-x-3 sm:space-x-0 items-center sm:items-stretch sm:pt-5 sm:pr-5 min-w-[200px] sm:w-[120px] sm:h-full overflow-hidden">
 			<div className="sm:mb-5">
 				<CreateNoteButton />
 			</div>
-			<div className="hidden sm:block flex-col sm:space-y-3 sm:overflow-y-scroll sm:h-full">
+			<div className="hidden sm:block flex-col sm:space-y-3 sm:overflow-y-scroll">
 				{
 					notesRedux.map(({ id, title }) => {
 						return (
-							<Link href={`/note/${id}`} key={id}>
+							<Link href={`/${id}`} key={id}>
 								<div className={(noteId === id ? "border-solid border-2 border-yellow-500 " : "border-solid border-2 border-slate-200 ") + "bg-slate-700 p-3 rounded-lg text-xs hover:bg-slate-400 transition-all duration-300 whitespace-nowrap h-[48px] items-center sm:items-start justify-center align-middle mb-3"}>{title}</div>
 							</Link>
 						)
@@ -69,12 +68,12 @@ export default function NoteListPanel() {
 				}
 			</div>
 
-			<div className="sm:hidden flex flex-row space-x-5 w-screen">
+			<div className="sm:hidden flex flex-row space-x-5 w-[calc(100vw-50px)]">
 				<div className="flex flex-row shrink overflow-x-scroll space-x-5 max-w-full">
 					{
-						notesReduxTop3.map(({ id, title }) => {
+						notesRedux.map(({ id, title }) => {
 							return (
-								<Link href={`/note/${id}`} key={id}>
+								<Link href={`/${id}`} key={id}>
 									<div className={(noteId === id ? "border-solid border-2 border-yellow-500 " : "border-solid border-2 border-slate-200 ") + "bg-slate-700 p-3 rounded-lg text-xs hover:bg-slate-400 transition-all duration-300 whitespace-nowrap h-[46px] items-center sm:items-start justify-center align-middle pt-3.5"}>{title}</div>
 								</Link>
 							)

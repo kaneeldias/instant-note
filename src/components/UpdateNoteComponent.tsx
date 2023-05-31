@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react';
-import { UpdateNoteRequest } from "../types/note-types";
+import { UpdateNoteRequest } from "../app/types/note-types";
 import TextField from "@/components/inputs/TextField";
 import TextArea from "@/components/inputs/TextArea";
 import ActionButton from "@/components/buttons/Button";
@@ -9,9 +9,9 @@ import { CheckCircleIcon, TrashIcon } from "@heroicons/react/24/solid";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useDispatch } from 'react-redux';
-import { addToNotesList, removeFromNotesList, updateNoteInNotesList } from '../GlobalRedux/Features/noteList/noteListSlicer';
-import { getSLTimestamp } from "../utils/time";
-import { getTitle } from "../utils/notes";
+import { addToNotesList, removeFromNotesList, updateNoteInNotesList } from '../app/GlobalRedux/Features/noteList/noteListSlicer';
+import { getSLTimestamp } from "../app/utils/time";
+import { getTitle } from "../app/utils/notes";
 import DeleteNoteButton from "@/components/buttons/DeleteNoteButton";
 import AddNoteButton from "@/components/buttons/AddNoteButton";
 
@@ -66,7 +66,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 
 		if (create) {
 			toast.success("Note created successfully");
-			router.push(`/note/${id}`);
+			router.push(`/${id}`);
 
 			const hasNotes = localStorage.getItem("notes");
 			if (hasNotes && Array.isArray(JSON.parse(hasNotes))) {
@@ -186,7 +186,7 @@ export default function UpdateNoteComponent({ note = { title: "", content: "" },
 				</TextArea>
 			</div>
 
-			<div className="flex justify-end mb-3 space-x-5 block sm:hidden">
+			<div className="flex justify-end mb-3 space-x-5 sm:hidden">
 				{!isSaving && (
 					<ActionButton onClick={updateNote}>
 						<CheckCircleIcon className="h-6 w-6"></CheckCircleIcon>

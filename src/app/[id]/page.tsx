@@ -1,5 +1,5 @@
-import { ReadNoteRequest, ReadNoteResponse } from "../../types/note-types";
-import UpdateNoteComponent from "../UpdateNoteComponent";
+import { ReadNoteRequest, ReadNoteResponse } from "../types/note-types";
+import UpdateNoteComponent from "../../components/UpdateNoteComponent";
 
 async function getNote(id: string): Promise<ReadNoteResponse> {
 	const note = await fetch(`${process.env.API_PATH}/note/${id}`, { cache: "no-store" });

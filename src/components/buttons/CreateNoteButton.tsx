@@ -5,7 +5,7 @@ import Link from "next/link"
 
 function CreateNoteButton() {
 	return (
-		<Link href="/note">
+		<Link href="/">
 			<ActionButton>
 				<PlusIcon className="h-6 w-6 "></PlusIcon>
 				<span className="hidden sm:block">CREATE NOTE</span>
